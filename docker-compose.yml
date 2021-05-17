@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    image: node:16.1.0-alpine
+    depends_on:
+      - db
+    links:
+      - db
+    volumes:
+      - ./data/app:/app:rw
+
+  db:
+    image: mongo:4.4.6-bionic
+    volumes:
+      - ./data/data/db:/data/db:rw
