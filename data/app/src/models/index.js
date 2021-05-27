@@ -1,3 +1,5 @@
-module.exports = {
-    PostModel: require('./post.model'),
+module.exports = (connection) => {
+    return {
+        Post: connection.model('Post', require('./post.schema'))
+    }
 }

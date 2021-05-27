@@ -21,13 +21,14 @@ module.exports = class PostService {
      * @returns {Promise<Document<any, any>>}
      */
     static async create(nickname, text, isActive) {
-        try {
         const post = new Post({nickname: nickname, text: text, isActive: isActive})
-        return await post.save()
+        try {
+            await post.save()
         } catch (err) {
             throw err
         }
     }
+
 
     /** Update an existing post.
      *
@@ -37,7 +38,8 @@ module.exports = class PostService {
      * @param isActive
      * @returns {Promise<Query<Document<any, any> | null, Document<any, any>, {}>>}
      */
-    static async update(postId, nickname, text, isActive) {
+    static
+    async update(postId, nickname, text, isActive) {
 
     }
 
@@ -46,7 +48,8 @@ module.exports = class PostService {
      * @param postId
      * @returns {Promise<*>}
      */
-    static async get(postId) {
+    static
+    async get(postId) {
 
     }
 
@@ -60,11 +63,13 @@ module.exports = class PostService {
      * @param limit
      * @returns {Promise<Document<any, any>>}
      */
-    static async filter(nickname, text, isActive, start, limit) {
+    static
+    async filter(nickname, text, isActive, start, limit) {
 
     }
 
-    static async all() {
+    static
+    async all() {
         try {
             return await Post.find()
         } catch (err) {
@@ -78,7 +83,8 @@ module.exports = class PostService {
      * @param postId
      * @returns {Promise<*>}
      */
-    static async delete(postId) {
+    static
+    async delete(postId) {
 
     }
 }
