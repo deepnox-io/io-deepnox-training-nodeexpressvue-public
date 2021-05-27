@@ -5,7 +5,7 @@ const cors = require('cors')
 
 const {PostApi} = require('./api')
 
-mongoose.connect('mongodb://localhost:27017/microblogging', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://db:27017/microblogging', {useNewUrlParser: true, useUnifiedTopology: true})
 
 const main = () => {
     const app = express()

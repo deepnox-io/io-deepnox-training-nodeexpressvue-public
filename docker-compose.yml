@@ -9,6 +9,8 @@ services:
       - db
     volumes:
       - ./data/app:/app:rw
+    ports:
+      - 3000:3000
     command: ['node', '/app/src/index.js']
 
   db:
