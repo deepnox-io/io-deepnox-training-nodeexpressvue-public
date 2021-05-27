@@ -1,7 +1,7 @@
 const expect = require('expect')
 const setup = require('./utils/mongoose-setup')
 
-describe("Post", function () {
+describe("Post",  () => {
     let Post, Transaction
 
     setup(model => ({ Post } = model))
