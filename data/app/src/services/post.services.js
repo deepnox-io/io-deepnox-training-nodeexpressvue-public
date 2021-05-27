@@ -21,8 +21,12 @@ module.exports = class PostService {
      * @returns {Promise<Document<any, any>>}
      */
     static async create(nickname, text, isActive) {
+        try {
         const post = new Post({nickname: nickname, text: text, isActive: isActive})
         return await post.save()
+        } catch (err) {
+            throw err
+        }
     }
 
     /** Update an existing post.
@@ -58,6 +62,14 @@ module.exports = class PostService {
      */
     static async filter(nickname, text, isActive, start, limit) {
 
+    }
+
+    static async all() {
+        try {
+            return await Post.find()
+        } catch (err) {
+            throw err
+        }
     }
 
     /**

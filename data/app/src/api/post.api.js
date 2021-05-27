@@ -13,20 +13,30 @@ const validateRegister = (req, res, next) => {
             msg: 'Please enter a username with min. 3 chars'
         });
     }
-    next();
+    next()
 }
 
-postApi.post('/', validateRegister, async (req, res, next) => {
+postApi.post('/', async (req, res, next) => {
     const {nickname, text, isActive} = req.body
     LOG.debug(`post(nickname=${nickname}, text=${text}, isActive=${isActive}`)
-    let r = await PostServices.create(nickname, text, isActive)
-    res.json(r)
+    try {
+        let r = await PostServices.create(nickname, text, isActive)
+        res.json(r)
+    } catch (err) {
+        throw err
+    }
 
 })
 
 /** Retourne la liste des posts. */
-postApi.get( '/', async (req, res, next) => {
-
+postApi.get('/', async (req, res, next) => {
+    LOG.debug(`all()`)
+    try {
+        let r = await PostServices.all()
+        res.json(r)
+    } catch (err) {
+        throw err
+    }
 })
 
 module.exports = postApi
