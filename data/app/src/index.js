@@ -14,12 +14,26 @@ const main = () => {
     const app = express()
     app.use(cors())
     app.use(bodyParser.json())
-    app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(bodyParser.urlencoded({extended: true}))
     app.use('/post', PostApi)
+
+    // Log errors
+    app.use((err, req, res, next) => {
+        console.error(err.stack)
+        next(err)
+    }
+
+    // Retourne au client une erreur lisible
+    app.use((err, req, res, next) => {
+        res.status(500)
+        res.render('error', {error: err})
+    })
+
     app.use((err, req, res, next) => {
         const simplified_err = {message: err.message, stack: err.stack}
         LOG.error(simplified_err)
         res.status(500).send(simplified_err)
+        next()
     })
 
 
