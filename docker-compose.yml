@@ -9,6 +9,7 @@ services:
       - db
     volumes:
       - ./data/app:/app:rw
+    command: ['node', '/app/src/index.js']
 
   db:
     image: mongo:4.4.6-bionic
