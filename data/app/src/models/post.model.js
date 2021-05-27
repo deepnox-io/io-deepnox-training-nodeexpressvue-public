@@ -10,12 +10,12 @@ const mongoose = require('mongoose')
 const PostSchema = new mongoose.Schema({
     nickname: {type: String, maxlength: 32, validate:/[^\s]+/},
     text: {type: String, maxlength: 140},
-    isActive: {type: Boolean, default: True},
+    isActive: {type: Boolean, default: true},
 }, {versionKey: false})
 
 /**
  * Assigner le schéma à la connexion en cours vers Mongoose.
  *
  */
-module.exports = mongoose.Model('Post', PostSchema)
+module.exports = mongoose.model('Post', PostSchema, )
 
