@@ -21,7 +21,7 @@ const main = () => {
     app.use((err, req, res, next) => {
         console.error(err.stack)
         next(err)
-    }
+    })
 
     // Retourne au client une erreur lisible
     app.use((err, req, res, next) => {

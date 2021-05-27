@@ -6,7 +6,6 @@ const {PostServices} = require("../services");
 const postApi = require('express').Router()
 
 
-
 const validateRegister = (req, res, next) => {
     // username min length 3
     if (!req.body.username || req.body.username.length < 3) {
@@ -17,16 +16,17 @@ const validateRegister = (req, res, next) => {
     next();
 }
 
-postApi.post('/', async (req, res, next) => {
+postApi.post('/', validateRegister, async (req, res, next) => {
     const {nickname, text, isActive} = req.body
     LOG.debug(`post(nickname=${nickname}, text=${text}, isActive=${isActive}`)
-    // try {
-        let r = await PostServices.create(nickname, text, isActive)
-        res.json(r)
-    // } catch (err) {
-        //     res.status(400).json({message: `Unexcepted error ${err.msg}`})
-        // }
+    let r = await PostServices.create(nickname, text, isActive)
+    res.json(r)
+
 })
 
+/** Retourne la liste des posts. */
+postApi.get( '/', async (req, res, next) => {
+
+})
 
 module.exports = postApi
