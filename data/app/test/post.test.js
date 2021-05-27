@@ -6,7 +6,7 @@ describe("Post", function () {
 
     setup(model => ({ Post } = model))
 
-    it("creates opening balance transaction and sets account balance", async function () {
+    it("create", async () => {
         const post = await Post.create({
             nickname: 'nickname_test',
             text: 'text_test',
