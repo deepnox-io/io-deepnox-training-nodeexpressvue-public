@@ -1,4 +1,4 @@
-# io-deepnox-training-nodeexpressvue-public
+# Formation - Node+Express+Vue
 
 ## Installation
 
