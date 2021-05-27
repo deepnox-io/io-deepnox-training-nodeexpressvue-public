@@ -12,7 +12,7 @@ postApi.post('/', async (req, res, next) => {
         let r = await PostServices.create(nickname, text, isActive)
         res.json(r)
     } catch (err) {
-        res.status(200).send(`Unexcepted error ${err.msg}`)
+        res.status(400).json({message: `Unexcepted error ${err.msg}`})
     }
 })
 
