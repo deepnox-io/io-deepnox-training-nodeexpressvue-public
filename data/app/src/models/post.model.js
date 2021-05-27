@@ -17,5 +17,5 @@ const PostSchema = new mongoose.Schema({
  * Assigner le schéma à la connexion en cours vers Mongoose.
  *
  */
-const Post = mongoose.Model('Post', PostSchema)
+module.exports = mongoose.Model('Post', PostSchema)
 

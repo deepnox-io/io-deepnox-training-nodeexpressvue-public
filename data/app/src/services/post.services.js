@@ -21,7 +21,8 @@ module.exports = class PostService {
      * @returns {Promise<Document<any, any>>}
      */
     static async create(nickname, text, isActive) {
-
+        const post = new Post({nickname: nickname, text: text, isActive: isActive})
+        return await post.save()
     }
 
     /** Update an existing post.
