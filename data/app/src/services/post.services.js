@@ -1,10 +1,12 @@
-const Post = require('../models/post.model')
+const { Post } = require('../models/')
 
 /**
  * Posts business service.
  *
  * @type {PostService}
  */
+
+
 module.exports = class PostService {
 
     /** Default constructor.
