@@ -1,14 +1,14 @@
 <template>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a href="#" class="navbar-brand" :to="{ name: 'home' }">ExpressVue</a>
+        <router-link class="navbar-brand" :to="{ name: 'home' }">ExpressVue</router-link>
 
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Accueil</a>
+                <li class="nav-item" :class="isActive('home') && 'active'">
+                    <router-link :to="{ name: 'home' }" class="nav-link">Accueil</router-link>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Ajouter un article</a>
+                <li class="nav-item" :class="isActive('post.add') && 'active'">
+                    <router-link :to="{ name: 'post.add' }" class="nav-link">Ajouter un article</router-link>
                 </li>
             </ul>
         </div>
@@ -18,5 +18,14 @@
 <script>
 export default {
     name: 'Nav',
+    methods: {
+      isActive(name) {
+        if (this.$route.name === name) {
+          return true
+        } else {
+          return false
+        }
+      }
+    }
 }
 </script>

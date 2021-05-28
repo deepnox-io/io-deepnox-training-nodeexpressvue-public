@@ -2,7 +2,7 @@
   <div id="app">
     <Nav />
     <div class="container my-5">
-      C'est ok
+      <router-view />
     </div>
   </div>
 </template>
