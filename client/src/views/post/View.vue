@@ -3,8 +3,7 @@
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">
                 <h1 class="display-4 font-italic">Posté par {{ post.nickname }}</h1>
-                <p class="lead my-3" v-if="post.text">
-                    {{ post.text.substring(0, 10) }}...
+                <p class="lead my-3" v-if="post.text" v-html="`${post.text.substring(0, 10)}...`">
                 </p>
             </div>
         </div>
@@ -32,7 +31,6 @@ export default {
   methods: {
     async getPost() {
       const { data } = await HTTP.get(`/posts/${this.$route.params.id}`)
-      console.log(data)
       this.post = data
     }
   }
