@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import PostAdd from '../views/post/Add.vue'
 import PostView from '../views/post/View.vue'
 import PostList from '../views/post/List.vue'
+import PostListWithSearch from '../views/post/ListWithSearch.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/post/list',
     name: 'post.list',
     component: PostList
+  },
+  {
+    path: '/post/list-with-search',
+    name: 'post.list-with-search',
+    component: PostListWithSearch
   },
 ]
 
