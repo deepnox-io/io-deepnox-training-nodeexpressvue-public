@@ -1,4 +1,4 @@
-const { Post } = require('../models/')
+const {Post} = require('../models/')
 
 /**
  * Posts business service.
@@ -12,8 +12,7 @@ module.exports = class PostService {
     /** Default constructor.
      *
      */
-    constructor() {
-    }
+    constructor() {}
 
     /** Create a new post.
      *
@@ -23,14 +22,18 @@ module.exports = class PostService {
      * @returns {Promise<Document<any, any>>}
      */
     static async create(nickname, text, isActive) {
-        const post = new Post({nickname: nickname, text: text, isActive: isActive})
         try {
+            const post = new Post({
+                nickname: nickname,
+                text: text,
+                isActive: isActive
+            })
             await post.save()
+            return post
         } catch (err) {
             throw err
         }
     }
-
 
     /** Update an existing post.
      *
@@ -40,9 +43,16 @@ module.exports = class PostService {
      * @param isActive
      * @returns {Promise<Query<Document<any, any> | null, Document<any, any>, {}>>}
      */
-    static
-    async update(postId, nickname, text, isActive) {
-
+    static async update(postId, nickname, text, isActive) {
+        try {
+            const post = Post.findOne({
+                _id: postId
+            })
+            await post.save()
+            return post
+        } catch (err) {
+            throw err
+        }
     }
 
     /** Get post by identifier.
@@ -50,9 +60,53 @@ module.exports = class PostService {
      * @param postId
      * @returns {Promise<*>}
      */
-    static
-    async get(postId) {
+    static async getOne(postId) {
+        try {
+            const post = await Post.findOne({
+                _id: postId
+            })
+            return post
+        } catch (err) {
+            throw err
+        }
+    }
 
+    /** Get all posts.
+     *
+     * @param postId
+     * @returns {Promise<*>}
+     */
+    static async get(skip, limit, nickname) {
+        var query = []
+        if (nickname) {
+            query.push({
+                $match: {
+                    nickname: nickname
+                }
+            })
+        }
+
+        if (skip) {
+            query.push({
+                $skip: parseInt(skip)
+            })
+        }
+        if (limit) {
+            query.push({
+                $limit: parseInt(limit)
+            })
+        }
+        try {
+            if (query && query.length) {
+                var posts = await Post.aggregate(query)
+            } else {
+                var posts = await Post.find()
+            }
+
+            return posts
+        } catch (err) {
+            throw err
+        }
     }
 
     /**
@@ -65,15 +119,14 @@ module.exports = class PostService {
      * @param limit
      * @returns {Promise<Document<any, any>>}
      */
-    static
-    async filter(nickname, text, isActive, start, limit) {
-
-    }
-
-    static
-    async all() {
+    static async filter(nickname, text, isActive, start, limit) {
         try {
-            return await Post.find()
+            const post = new Post({
+                nickname: nickname,
+                text: text,
+                isActive: isActive
+            })
+            return await post.save()
         } catch (err) {
             throw err
         }
@@ -85,8 +138,17 @@ module.exports = class PostService {
      * @param postId
      * @returns {Promise<*>}
      */
-    static
-    async delete(postId) {
-
+    static async delete(postId) {
+        try {
+            const post = Post.findOne({
+                _id: postId
+            })
+            if (post === undefined) {
+                throw new Error(`Inexistant post (id=${postId}`)
+            }
+            return await post.deleteOne()
+        } catch (err) {
+            throw err
+        }
     }
 }

@@ -1,7 +1,7 @@
 const expect = require('expect')
 const setup = require('./utils/mongoose-setup')
 
-describe("Post",  () => {
+describe("PostService",  () => {
     let Post
 
     setup(model => ({ Post } = model))
@@ -13,8 +13,8 @@ describe("Post",  () => {
             isActive: true,
         })
         expect(post).toMatchObject({
-            nickname: 'nickname_test',
-            text: 'text_test',
+            nickname: 'xx',
+            text: 'xxx',
             isActive: true,
         })
     })
