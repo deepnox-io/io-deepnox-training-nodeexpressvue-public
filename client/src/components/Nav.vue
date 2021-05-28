@@ -10,6 +10,9 @@
                 <li class="nav-item" :class="isActive('post.add') && 'active'">
                     <router-link :to="{ name: 'post.add' }" class="nav-link">Ajouter un article</router-link>
                 </li>
+                <li class="nav-item" :class="isActive('post.list') && 'active'">
+                    <router-link :to="{ name: 'post.list' }" class="nav-link">Liste des articles</router-link>
+                </li>
             </ul>
         </div>
     </nav>
