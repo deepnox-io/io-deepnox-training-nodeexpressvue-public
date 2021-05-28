@@ -16,6 +16,9 @@
                 <li class="nav-item" :class="isActive('post.list-with-search') && 'active'">
                     <router-link :to="{ name: 'post.list-with-search' }" class="nav-link">Liste des articles avec recherche</router-link>
                 </li>
+                <li class="nav-item" :class="isActive('post.advanced-list') && 'active'">
+                    <router-link :to="{ name: 'post.advanced-list' }" class="nav-link">Liste des articles (avancée)</router-link>
+                </li>
             </ul>
         </div>
     </nav>
